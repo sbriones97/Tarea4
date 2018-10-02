@@ -1,5 +1,6 @@
 package com.iteso.test;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -19,6 +20,7 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.iteso.test.beans.ItemProduct;
 import com.iteso.test.tools.Commons;
 
 public class ActivityMain extends AppCompatActivity {
@@ -88,6 +90,14 @@ public class ActivityMain extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode == 1 && resultCode == RESULT_OK && data != null){
+            ItemProduct modifiedItem = data.getParcelableExtra("ITEM");
+            int productIndex = modifiedItem.getCode();
+            FragmentTechnology fragment  = new FragmentTechnology();
+            fragment.modifyItem(modifiedItem,productIndex);
+        } }
     /*
     /**
      * A placeholder fragment containing a simple view.

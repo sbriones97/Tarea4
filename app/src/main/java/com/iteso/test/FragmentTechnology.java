@@ -21,6 +21,8 @@ public class FragmentTechnology extends Fragment {
 
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private ArrayList<ItemProduct> myDataSet;
+    private RecyclerView recyclerView;
 
     public FragmentTechnology() {
         // Required empty public constructor
@@ -62,6 +64,12 @@ public class FragmentTechnology extends Fragment {
         mAdapter = new AdapterProduct(getActivity(),myDataSet);
         recyclerView.setAdapter(mAdapter);
         return view;
+    }
+
+    public void modifyItem(ItemProduct itemProduct, int index) {
+        myDataSet.set(index, itemProduct);
+        mAdapter = new AdapterProduct(getActivity(), myDataSet);
+        recyclerView.setAdapter(mAdapter);
     }
 
 }

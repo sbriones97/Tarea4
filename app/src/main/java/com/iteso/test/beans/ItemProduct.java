@@ -1,5 +1,8 @@
 package com.iteso.test.beans;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 public class ItemProduct {
     private int image ;
     private String title;
@@ -7,6 +10,7 @@ public class ItemProduct {
     private String location;
     private String phone;
     private String descripction;
+    private int code;
 
     public ItemProduct(){
         setImage(0);
@@ -15,15 +19,27 @@ public class ItemProduct {
         setPhone("");
         setLocation("");
         setStore("");
+        code =0;
     }
 
-    public ItemProduct(int image, String title, String store, String location, String phone, String descripction) {
+    public ItemProduct(Parcel in){
+        image = in.readInt();
+        title = in.readString();
+        store = in.readString();
+        location = in.readString();
+        phone = in.readString();
+        descripction = in.readString();
+        code = in.readInt();
+    }
+
+    public ItemProduct(int image, String title, String store, String location, String phone, String descripction, int code) {
         this.image = image;
         this.title = title;
         this.store = store;
         this.location = location;
         this.phone = phone;
         this.descripction = descripction;
+        this.code = code;
     }
 
     @Override
@@ -35,8 +51,36 @@ public class ItemProduct {
                 ", location='" + location + '\'' +
                 ", phone='" + phone + '\'' +
                 ", descripction='" + descripction + '\'' +
+                ", code='" + code + '\'' +
                 '}';
     }
+
+    public int describeContents() {
+        return 0;
+    }
+
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt( image );
+        dest.writeString(title);
+        dest.writeString(store);
+        dest.writeString(location);
+        dest.writeString(phone);
+        dest.writeString(descripction);
+        dest.writeInt(code);
+    }
+    public static final Parcelable.Creator<ItemProduct> CREATOR= new Parcelable.Creator<ItemProduct>() {
+        @Override
+        public ItemProduct createFromParcel(Parcel source) {
+        // using parcelable constructor
+            return new ItemProduct (source);
+        }
+        @Override
+        public ItemProduct[] newArray(int size) {
+            return new ItemProduct[size];
+        }
+    };
+
+
 
     public int getImage() {
         return image;
@@ -85,6 +129,10 @@ public class ItemProduct {
     public void setDescripction(String descripction) {
         this.descripction = descripction;
     }
+
+    public int getCode() { return code; }
+
+    public void setCode(int code) { this.code = code; }
 }
 
 

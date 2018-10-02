@@ -92,6 +92,15 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
                 context.startActivity(intent);
             }
         });
+
+        holder.mEventLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ActivityDetail.class);
+                intent.putExtra("ITEM", mDataSet.get(position));
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
