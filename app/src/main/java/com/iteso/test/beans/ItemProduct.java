@@ -3,7 +3,7 @@ package com.iteso.test.beans;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class ItemProduct {
+public class ItemProduct implements Parcelable{
     private int image ;
     private String title;
     private String store;

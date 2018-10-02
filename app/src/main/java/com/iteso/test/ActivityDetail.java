@@ -2,6 +2,7 @@ package com.iteso.test;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -52,7 +53,7 @@ public class ActivityDetail extends AppCompatActivity {
         itemProduct.setLocation(location.getText().toString());
         itemProduct.setPhone(phone.getText().toString());
         Intent intent = new Intent();
-        intent.putExtra("ITEM",itemProduct);
+        intent.putExtra("ITEM", itemProduct);
         setResult(Activity.RESULT_OK,intent);
         finish();
     }
